@@ -1,0 +1,18 @@
+[project]
+name = "notelab"
+version = "0.1.0"
+description = "Statistical test lab for Quell's reading notes: player notes to concept ids."
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "polars",
+    "scipy",
+]
+
+[dependency-groups]
+dev = ["hypothesis", "pytest"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

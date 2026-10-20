@@ -1,0 +1,24 @@
+# Made-up fixture concepts for tests. Not training material.
+
+stances = ["believes", "suspects", "doubts", "asks"]
+slots = ["person", "place", "time"]
+
+[concepts.river_ford]
+label = "river ford"
+description = "A shallow place where the river can be crossed on foot."
+
+[concepts.ferryman]
+label = "the ferryman"
+description = "The man who runs the ferry and keeps its log."
+
+[concepts."time.dusk"]
+label = "dusk"
+description = "Evening, when the light fails."
+
+[concepts.toll]
+label = "ferry toll"
+description = "What the ferry costs to cross."
+
+[concepts.flood]
+label = "the flood"
+description = "The year the river rose and destroyed the old landing."
