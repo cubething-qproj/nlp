@@ -1,0 +1,792 @@
+[
+ {
+  "name": "webanno.custom.Statement",
+  "uiName": "Statement",
+  "type": "span",
+  "description": "A conclusion, premise or lever. Its role comes from the connectors linking it. Implicit statements are zero-width (Shift+click) with their wording in note. E.g. in 'Socrates is a man; therefore he is mortal': 'Socrates is a man', 'he is mortal' (note: Socrates is mortal), and a zero-width 'All men are mortal'.",
+  "enabled": true,
+  "built_in": false,
+  "readonly": false,
+  "cross_sentence": true,
+  "show_hover": true,
+  "anchoring_mode": "TOKENS",
+  "overlap_mode": "ANY_OVERLAP",
+  "validation_mode": "ALWAYS",
+  "allow_stacking": true,
+  "lock_to_token_offset": false,
+  "multiple_tokens": true,
+  "linked_list_behavior": false,
+  "features": [
+   {
+    "name": "note",
+    "uiName": "note",
+    "type": "uima.cas.String",
+    "description": "Doubts, the label you nearly chose, or the wording of an implicit statement.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 1,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   }
+  ]
+ },
+ {
+  "name": "webanno.custom.Connector",
+  "uiName": "Connector",
+  "type": "span",
+  "description": "One PTA argument: one conclusion, one premise, one lever. Anchor on the coherence marker (because, so, …), or zero-width if there is none. E.g. on 'therefore' in 'Socrates is a man; therefore he is mortal': conclusion 'he is mortal', premise the implicit 'All men are mortal', lever statement 'Socrates is a man'; beta, β su, GENUS.",
+  "enabled": true,
+  "built_in": false,
+  "readonly": false,
+  "cross_sentence": true,
+  "show_hover": true,
+  "anchoring_mode": "TOKENS",
+  "overlap_mode": "ANY_OVERLAP",
+  "validation_mode": "ALWAYS",
+  "allow_stacking": true,
+  "lock_to_token_offset": false,
+  "multiple_tokens": true,
+  "linked_list_behavior": false,
+  "features": [
+   {
+    "name": "form",
+    "uiName": "form",
+    "type": "uima.cas.String",
+    "description": "Which elements conclusion and premise share.",
+    "enabled": true,
+    "visible": true,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 1,
+    "tag_set": {
+     "name": "PTA forms",
+     "description": "PTA forms",
+     "language": null,
+     "create_tag": false,
+     "tags": [
+      {
+       "tag_name": "alpha",
+       "tag_description": "a is X because a is Y: same subject, different predicates. E.g. the minister did a great job because the minister raised the budget."
+      },
+      {
+       "tag_name": "beta",
+       "tag_description": "a is X because b is X: same predicate, different subjects. E.g. Socrates is mortal because all men are mortal."
+      },
+      {
+       "tag_name": "gamma",
+       "tag_description": "a is X because b is Y: nothing shared. E.g. peace can be started by truth because war can be started by lies."
+      },
+      {
+       "tag_name": "delta",
+       "tag_description": "q is A/U because q is Z: the premise says something about the conclusion as a whole (who says it, what follows from it). E.g. the economy grew [is acceptable] because Eurostat says so."
+      }
+     ]
+    },
+    "traits": "{\"editorType\": \"RADIOGROUP\"}"
+   },
+   {
+    "name": "substance",
+    "uiName": "substance",
+    "type": "uima.cas.String",
+    "description": "Prefixed with the form; conclusion first, then premise.",
+    "enabled": true,
+    "visible": true,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 2,
+    "tag_set": {
+     "name": "PTA substances",
+     "description": "PTA substances",
+     "language": null,
+     "create_tag": false,
+     "tags": [
+      {
+       "tag_name": "α FF",
+       "tag_description": "conclusion fact, premise fact"
+      },
+      {
+       "tag_name": "α VF",
+       "tag_description": "conclusion value, premise fact"
+      },
+      {
+       "tag_name": "α VV",
+       "tag_description": "conclusion value, premise value"
+      },
+      {
+       "tag_name": "α PF",
+       "tag_description": "conclusion policy, premise fact"
+      },
+      {
+       "tag_name": "α PV",
+       "tag_description": "conclusion policy, premise value"
+      },
+      {
+       "tag_name": "α PP",
+       "tag_description": "conclusion policy, premise policy"
+      },
+      {
+       "tag_name": "α FV",
+       "tag_description": "conclusion fact, premise value"
+      },
+      {
+       "tag_name": "α FP",
+       "tag_description": "conclusion fact, premise policy"
+      },
+      {
+       "tag_name": "α VP",
+       "tag_description": "conclusion value, premise policy"
+      },
+      {
+       "tag_name": "β ss",
+       "tag_description": "conclusion singular, premise singular"
+      },
+      {
+       "tag_name": "β pp",
+       "tag_description": "conclusion particular, premise particular"
+      },
+      {
+       "tag_name": "β uu",
+       "tag_description": "conclusion universal, premise universal"
+      },
+      {
+       "tag_name": "β ps",
+       "tag_description": "conclusion particular, premise singular"
+      },
+      {
+       "tag_name": "β us",
+       "tag_description": "conclusion universal, premise singular"
+      },
+      {
+       "tag_name": "β up",
+       "tag_description": "conclusion universal, premise particular"
+      },
+      {
+       "tag_name": "β sp",
+       "tag_description": "conclusion singular, premise particular"
+      },
+      {
+       "tag_name": "β su",
+       "tag_description": "conclusion singular, premise universal"
+      },
+      {
+       "tag_name": "β pu",
+       "tag_description": "conclusion particular, premise universal"
+      },
+      {
+       "tag_name": "γ i",
+       "tag_description": "identical: the subjects relate as the predicates do. E.g. peace/war as truth/lies"
+      },
+      {
+       "tag_name": "γ d",
+       "tag_description": "different: no shared relation (try inserting a middle step first). E.g. the tram is late because my cat is grey"
+      },
+      {
+       "tag_name": "δ I",
+       "tag_description": "first person: the arguer is the source. E.g. trust me, I've done this for twenty years"
+      },
+      {
+       "tag_name": "δ II",
+       "tag_description": "second person: the addressee (threats, rewards, commitments). E.g. agree, or you're fired; you said so yourself last week"
+      },
+      {
+       "tag_name": "δ III",
+       "tag_description": "third person: an expert, a witness, the public. E.g. doctors agree that …"
+      }
+     ]
+    },
+    "traits": null
+   },
+   {
+    "name": "lever",
+    "uiName": "lever",
+    "type": "uima.cas.String",
+    "description": "The lever keyword.",
+    "enabled": true,
+    "visible": true,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 3,
+    "tag_set": {
+     "name": "PTA levers",
+     "description": "PTA levers",
+     "language": null,
+     "create_tag": false,
+     "tags": [
+      {
+       "tag_name": "SIGN",
+       "tag_description": "Y is a SIGN of X. argument from sign (Sig)"
+      },
+      {
+       "tag_name": "CAUSE",
+       "tag_description": "Y is a CAUSE of X. argument from cause (Cau)"
+      },
+      {
+       "tag_name": "EFFECT",
+       "tag_description": "Y is an EFFECT of X. argument from effect (Ef)"
+      },
+      {
+       "tag_name": "CORRELATED",
+       "tag_description": "Y is CORRELATED with X. argument from correlation (Cor)"
+      },
+      {
+       "tag_name": "MOTIVE",
+       "tag_description": "Y is a MOTIVE for X. argument from motive (Mot)"
+      },
+      {
+       "tag_name": "EXCLUDES",
+       "tag_description": "Y EXCLUDES X. argument from incompatibility (Inc)"
+      },
+      {
+       "tag_name": "CRITERION",
+       "tag_description": "Y is a CRITERION for X. argument from criterion (Cr)"
+      },
+      {
+       "tag_name": "DEFINITION",
+       "tag_description": "Y is the DEFINITION of X. argument from definition (Def)"
+      },
+      {
+       "tag_name": "SUBSUMED",
+       "tag_description": "Y can be SUBSUMED under X. argument from subsumption (Su)"
+      },
+      {
+       "tag_name": "NORM",
+       "tag_description": "Y is a NORM for X. argument from norm (Nor)"
+      },
+      {
+       "tag_name": "INSTANTIATION",
+       "tag_description": "Y is an INSTANTIATION of X. argument from instantiation (Ins)"
+      },
+      {
+       "tag_name": "DISQUALIFIER",
+       "tag_description": "Y is a DISQUALIFIER of X. argument from disqualifier (Dis)"
+      },
+      {
+       "tag_name": "PRAGMATIC MOTIVATION",
+       "tag_description": "Y is a PRAGMATIC MOTIVATION for X. pragmatic argument (Pra)"
+      },
+      {
+       "tag_name": "PRIOR INVESTMENT",
+       "tag_description": "Y is a PRIOR INVESTMENT in X. argument from waste (W)"
+      },
+      {
+       "tag_name": "FEASIBILITY",
+       "tag_description": "Y is the FEASIBILITY of X. argument from possibility (Pos)"
+      },
+      {
+       "tag_name": "PRINCIPLED MOTIVATION",
+       "tag_description": "Y is a PRINCIPLED MOTIVATION for X. argument from principle (Pri)"
+      },
+      {
+       "tag_name": "EVALUATIVE MOTIVATION",
+       "tag_description": "Y is an EVALUATIVE MOTIVATION for X. argument from evaluation (Ev)"
+      },
+      {
+       "tag_name": "DEONTIC MOTIVATION",
+       "tag_description": "Y is a DEONTIC MOTIVATION for X. deontic argument (Deo)"
+      },
+      {
+       "tag_name": "TELEOLOGIC MOTIVATION",
+       "tag_description": "Y is a TELEOLOGIC MOTIVATION for X. teleologic argument (Tel)"
+      },
+      {
+       "tag_name": "ANALOGOUS",
+       "tag_description": "a is ANALOGOUS to b. argument from analogy (A)"
+      },
+      {
+       "tag_name": "SIMILAR",
+       "tag_description": "a is SIMILAR to b. argument from similarity (Sim)"
+      },
+      {
+       "tag_name": "COMPARABLE",
+       "tag_description": "a is COMPARABLE to b. argument from comparison (Cpa)"
+      },
+      {
+       "tag_name": "EQUAL",
+       "tag_description": "a is EQUAL to b. argument from equality (Eq)"
+      },
+      {
+       "tag_name": "METAPHORICALLY",
+       "tag_description": "a is described METAPHORICALLY as b. metaphoric argument (Me)"
+      },
+      {
+       "tag_name": "COMPOSED",
+       "tag_description": "a is COMPOSED of b. argument from composition (Cpo)"
+      },
+      {
+       "tag_name": "PART",
+       "tag_description": "a is a PART of b. argument from division (Div)"
+      },
+      {
+       "tag_name": "RANKS BELOW",
+       "tag_description": "a RANKS BELOW b. argumentum a maiore (Ma)"
+      },
+      {
+       "tag_name": "RANKS ABOVE",
+       "tag_description": "a RANKS ABOVE b. argumentum a minore (Mi)"
+      },
+      {
+       "tag_name": "OWES RECIPROCITY",
+       "tag_description": "a OWES RECIPROCITY to b. argument from reciprocity (R)"
+      },
+      {
+       "tag_name": "EXAMPLE",
+       "tag_description": "b is an EXAMPLE of a. argument from example (Exa)"
+      },
+      {
+       "tag_name": "SPECIES",
+       "tag_description": "b is a SPECIES of a. argument from species (Sp)"
+      },
+      {
+       "tag_name": "TOTALITY",
+       "tag_description": "a belongs to the TOTALITY of b. argument from totality (To)"
+      },
+      {
+       "tag_name": "GENUS",
+       "tag_description": "a belongs to the GENUS of b. argument from genus (G)"
+      },
+      {
+       "tag_name": "SYNONYMOUS",
+       "tag_description": "b is SYNONYMOUS to a and Y is SYNONYMOUS to X. argument from synonyms (Sy)"
+      },
+      {
+       "tag_name": "OPPOSITE",
+       "tag_description": "b is the OPPOSITE of a and Y is the OPPOSITE of X. argument from opposites (Op)"
+      },
+      {
+       "tag_name": "DERIVATIVE",
+       "tag_description": "b is DERIVATIVE of a and Y is DERIVATIVE of X. argument from derivatives (Der)"
+      },
+      {
+       "tag_name": "INTEGRATIVE",
+       "tag_description": "b is INTEGRATIVE of a and Y is INTEGRATIVE of X. argument from integratives (Int)"
+      },
+      {
+       "tag_name": "CONVERSE",
+       "tag_description": "b is the CONVERSE of a and Y is the CONVERSE of X. argument from converses (Cve)"
+      },
+      {
+       "tag_name": "none",
+       "tag_description": "no lever: the premise is irrelevant. non sequitur (Non)"
+      },
+      {
+       "tag_name": "ETHOTICALLY AUTHORITATIVE",
+       "tag_description": "Z is ETHOTICALLY AUTHORITATIVE for A. ethotic argument (Eth)"
+      },
+      {
+       "tag_name": "CHARACTERALLY AUTHORITATIVE",
+       "tag_description": "Z is CHARACTERALLY AUTHORITATIVE for U. argumentum ad hominem (H)"
+      },
+      {
+       "tag_name": "NEGATIVE MOTIVATION",
+       "tag_description": "Z is a NEGATIVE MOTIVATION for A. argumentum ad baculum (B)"
+      },
+      {
+       "tag_name": "OFFERED REWARD",
+       "tag_description": "Z is an OFFERED REWARD for A. argumentum ad carotam (Car)"
+      },
+      {
+       "tag_name": "COMMITS",
+       "tag_description": "Z COMMITS the addressee to A. argument from concession (Cce)"
+      },
+      {
+       "tag_name": "UNDESIRABLE IMPLICATION",
+       "tag_description": "Z is an UNDESIRABLE IMPLICATION supporting U. argumentum ad consequentiam (Cse)"
+      },
+      {
+       "tag_name": "EPISTEMICALLY AUTHORITATIVE",
+       "tag_description": "Z is EPISTEMICALLY AUTHORITATIVE for A. argument from expert opinion (Exp)"
+      },
+      {
+       "tag_name": "MORALLY AUTHORITATIVE",
+       "tag_description": "Z is MORALLY AUTHORITATIVE for A. argument from moral authority (Mor)"
+      },
+      {
+       "tag_name": "TESTIMONIALLY AUTHORITATIVE",
+       "tag_description": "Z is TESTIMONIALLY AUTHORITATIVE for A. argument from testimony (Tes)"
+      },
+      {
+       "tag_name": "POPULARLY AUTHORITATIVE",
+       "tag_description": "Z is POPULARLY AUTHORITATIVE for A. argumentum ad populum (Pop)"
+      },
+      {
+       "tag_name": "PRESUMPTION",
+       "tag_description": "Z is a PRESUMPTION in favor of A. argumentum ad ignorantiam (Ig)"
+      },
+      {
+       "tag_name": "novel",
+       "tag_description": "None of the listed levers fits: write it out in note."
+      }
+     ]
+    },
+    "traits": null
+   },
+   {
+    "name": "conclusion",
+    "uiName": "conclusion",
+    "type": "webanno.custom.Statement",
+    "description": "The statement argued for. Exactly one. E.g. 'Socrates is mortal'.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": false,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "ARRAY",
+    "link_mode": "WITH_ROLE",
+    "curatable": true,
+    "rank": 4,
+    "tag_set": null,
+    "traits": "{\"enableRoleLabels\": false}",
+    "link_type_name": "webanno.custom.ConnectorConclusionLink",
+    "link_type_role_feature_name": "role",
+    "link_type_target_feature_name": "target"
+   },
+   {
+    "name": "premise",
+    "uiName": "premise",
+    "type": "webanno.custom.Statement",
+    "description": "The reason given; when two statements support jointly, the one the text marks as the reason, else the generalization. Exactly one. E.g. 'all men are mortal'.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": false,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "ARRAY",
+    "link_mode": "WITH_ROLE",
+    "curatable": true,
+    "rank": 5,
+    "tag_set": null,
+    "traits": "{\"enableRoleLabels\": false}",
+    "link_type_name": "webanno.custom.ConnectorPremiseLink",
+    "link_type_role_feature_name": "role",
+    "link_type_target_feature_name": "target"
+   },
+   {
+    "name": "leverStatement",
+    "uiName": "lever statement",
+    "type": "webanno.custom.Statement",
+    "description": "The lever as a statement, only if the text states it or argues about it; otherwise leave empty (the lever keyword is enough). At most one. E.g. 'Socrates is a man' (membership), 'robots are just like us' (likeness).",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": false,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "ARRAY",
+    "link_mode": "WITH_ROLE",
+    "curatable": true,
+    "rank": 6,
+    "tag_set": null,
+    "traits": "{\"enableRoleLabels\": false}",
+    "link_type_name": "webanno.custom.ConnectorLeverStatementLink",
+    "link_type_role_feature_name": "role",
+    "link_type_target_feature_name": "target"
+   },
+   {
+    "name": "conclusionSubject",
+    "uiName": "conclusion subject",
+    "type": "uima.cas.String",
+    "description": "The conclusion's subject in canonical form: a in the lever templates; for delta, the whole proposition q. E.g. 'Socrates'.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 7,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   },
+   {
+    "name": "conclusionPredicate",
+    "uiName": "conclusion predicate",
+    "type": "uima.cas.String",
+    "description": "The conclusion's predicate in canonical form: X in the lever templates; for delta, '[is acceptable]' or '[is unacceptable]' (A/U). E.g. 'is mortal'.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 8,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   },
+   {
+    "name": "premiseSubject",
+    "uiName": "premise subject",
+    "type": "uima.cas.String",
+    "description": "The premise's subject in canonical form: b in the lever templates (a again for alpha); for delta, q. E.g. 'all men'.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 9,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   },
+   {
+    "name": "premisePredicate",
+    "uiName": "premise predicate",
+    "type": "uima.cas.String",
+    "description": "The premise's predicate in canonical form: Y in the lever templates (X again for beta); for delta, Z. E.g. 'are mortal'.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 10,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   },
+   {
+    "name": "transformations",
+    "uiName": "transformations",
+    "type": "uima.cas.StringArray",
+    "description": "The transformations that changed a subject's or predicate's wording, each with the statement it applied to; once each, in any order. Empty if the text needed none.",
+    "enabled": true,
+    "visible": true,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "ARRAY",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 11,
+    "tag_set": {
+     "name": "PTA transformations",
+     "description": "PTA transformations",
+     "language": null,
+     "create_tag": false,
+     "tags": [
+      {
+       "tag_name": "anaphora (conclusion)",
+       "tag_description": "A reference replaced by what it refers to. E.g. 'it' -> 'unauthorized downloading'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "anaphora (premise)",
+       "tag_description": "A reference replaced by what it refers to. E.g. 'it' -> 'unauthorized downloading'. Applied to the premise."
+      },
+      {
+       "tag_name": "explication (conclusion)",
+       "tag_description": "Implicit content made explicit. E.g. 'why should you?' -> 'why should you stop carrying guns?'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "explication (premise)",
+       "tag_description": "Implicit content made explicit. E.g. 'why should you?' -> 'why should you stop carrying guns?'. Applied to the premise."
+      },
+      {
+       "tag_name": "illocution substitution (conclusion)",
+       "tag_description": "A rhetorical question (or other illocution) turned into an assertion. E.g. 'why should you?' -> 'you should not'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "illocution substitution (premise)",
+       "tag_description": "A rhetorical question (or other illocution) turned into an assertion. E.g. 'why should you?' -> 'you should not'. Applied to the premise."
+      },
+      {
+       "tag_name": "passivization (conclusion)",
+       "tag_description": "Active turned passive to bring out a shared term. E.g. 'many people have said q' -> 'q has been said by many people'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "passivization (premise)",
+       "tag_description": "Active turned passive to bring out a shared term. E.g. 'many people have said q' -> 'q has been said by many people'. Applied to the premise."
+      },
+      {
+       "tag_name": "activization (conclusion)",
+       "tag_description": "Passive turned active to bring out a shared term. E.g. 'the budget was raised by the minister' -> 'the minister raised the budget'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "activization (premise)",
+       "tag_description": "Passive turned active to bring out a shared term. E.g. 'the budget was raised by the minister' -> 'the minister raised the budget'. Applied to the premise."
+      },
+      {
+       "tag_name": "nominalisation (conclusion)",
+       "tag_description": "A clause turned into a noun phrase (ours, not ATIP's). E.g. 'to be immature is easy' -> 'being immature is easy'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "nominalisation (premise)",
+       "tag_description": "A clause turned into a noun phrase (ours, not ATIP's). E.g. 'to be immature is easy' -> 'being immature is easy'. Applied to the premise."
+      },
+      {
+       "tag_name": "same term (conclusion)",
+       "tag_description": "Two wordings judged to be one term (not an ATIP transformation). E.g. 'the obedience of all to the will of one' = 'authority'. Applied to the conclusion."
+      },
+      {
+       "tag_name": "same term (premise)",
+       "tag_description": "Two wordings judged to be one term (not an ATIP transformation). E.g. 'the obedience of all to the will of one' = 'authority'. Applied to the premise."
+      }
+     ]
+    },
+    "traits": null
+   },
+   {
+    "name": "concepts",
+    "uiName": "concepts",
+    "type": "uima.cas.StringArray",
+    "description": "What the argument is about: one or more tags, each `concept` or `concept/sense` for a writer's own sense (e.g. being, being/scotus). Lowercase only. At least one.",
+    "enabled": true,
+    "visible": true,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "ARRAY",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 12,
+    "tag_set": {
+     "name": "PTA concepts",
+     "description": "PTA concepts",
+     "language": null,
+     "create_tag": true,
+     "tags": []
+    },
+    "traits": null
+   },
+   {
+    "name": "note",
+    "uiName": "note",
+    "type": "uima.cas.String",
+    "description": "Doubts, the label you nearly chose, or a novel lever written out. The canonical form goes in the subject and predicate fields, not here.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 13,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   }
+  ]
+ },
+ {
+  "name": "webanno.custom.Cue",
+  "uiName": "Cue",
+  "type": "span",
+  "description": "A place that might signal an argument but isn't a connector. Cues that are connectors are Connector spans. E.g. 'who could deny that' (rhetorical), 'namely' (rephrase), 'however' (conflict), 'given that' introducing a stated lever (lever).",
+  "enabled": true,
+  "built_in": false,
+  "readonly": false,
+  "cross_sentence": true,
+  "show_hover": true,
+  "anchoring_mode": "TOKENS",
+  "overlap_mode": "ANY_OVERLAP",
+  "validation_mode": "ALWAYS",
+  "allow_stacking": true,
+  "lock_to_token_offset": false,
+  "multiple_tokens": true,
+  "linked_list_behavior": false,
+  "features": [
+   {
+    "name": "disposition",
+    "uiName": "disposition",
+    "type": "uima.cas.String",
+    "description": "What the cue turned out to be.",
+    "enabled": true,
+    "visible": true,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 1,
+    "tag_set": {
+     "name": "Cue dispositions",
+     "description": "Cue dispositions",
+     "language": null,
+     "create_tag": false,
+     "tags": [
+      {
+       "tag_name": "lever",
+       "tag_description": "It introduces a stated lever of a connector. E.g. 'given that Socrates is a man', 'as robots are just like us'."
+      },
+      {
+       "tag_name": "rephrase",
+       "tag_description": "It restates something; no argument. E.g. 'namely', 'that is', 'in other words': 'a bachelor, that is, an unmarried man'."
+      },
+      {
+       "tag_name": "conflict",
+       "tag_description": "It attacks a statement; say which in note. E.g. 'but', 'however', 'some say … yet', 'this cannot be, for …'."
+      },
+      {
+       "tag_name": "background",
+       "tag_description": "Explanation or context; no argument. E.g. 'here nature means the cosmos as a whole', 'after a long winter, …'."
+      },
+      {
+       "tag_name": "rhetorical",
+       "tag_description": "Framing only; its content is kept, the framing dropped. E.g. 'who could deny that …?', 'is it not obvious that …?', 'clearly', 'we are sure that', 'I would argue that', 'you should accept that'."
+      },
+      {
+       "tag_name": "unresolved",
+       "tag_description": "Undecided; say why in note. E.g. a 'thus' that may be sequence or inference."
+      }
+     ]
+    },
+    "traits": "{\"editorType\": \"RADIOGROUP\"}"
+   },
+   {
+    "name": "note",
+    "uiName": "note",
+    "type": "uima.cas.String",
+    "description": "Doubts, the label you nearly chose, or the wording of an implicit statement.",
+    "enabled": true,
+    "visible": false,
+    "include_in_hover": true,
+    "required": false,
+    "remember": false,
+    "hideUnconstraintFeature": false,
+    "multi_value_mode": "NONE",
+    "link_mode": "NONE",
+    "curatable": true,
+    "rank": 2,
+    "tag_set": null,
+    "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+   }
+  ]
+ }
+]

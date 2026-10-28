@@ -1,0 +1,32 @@
+import webanno.custom.Connector as Connector;
+
+Connector {
+  form = "alpha" -> substance = "α FF" | substance = "α VF" | substance = "α VV" | substance = "α PF" | substance = "α PV" | substance = "α PP" | substance = "α FV" | substance = "α FP" | substance = "α VP";
+  form = "beta" -> substance = "β ss" | substance = "β pp" | substance = "β uu" | substance = "β ps" | substance = "β us" | substance = "β up" | substance = "β sp" | substance = "β su" | substance = "β pu";
+  form = "gamma" -> substance = "γ i" | substance = "γ d";
+  form = "delta" -> substance = "δ I" | substance = "δ II" | substance = "δ III";
+
+  substance = "α FF" -> lever = "SIGN" | lever = "CAUSE" | lever = "EFFECT" | lever = "CORRELATED" | lever = "MOTIVE" | lever = "EXCLUDES" | lever = "novel";
+  substance = "α VF" -> lever = "CRITERION" | lever = "DEFINITION" | lever = "SUBSUMED" | lever = "novel";
+  substance = "α VV" -> lever = "NORM" | lever = "INSTANTIATION" | lever = "DISQUALIFIER" | lever = "novel";
+  substance = "α PF" -> lever = "PRAGMATIC MOTIVATION" | lever = "PRIOR INVESTMENT" | lever = "FEASIBILITY" | lever = "novel";
+  substance = "α PV" -> lever = "PRINCIPLED MOTIVATION" | lever = "EVALUATIVE MOTIVATION" | lever = "novel";
+  substance = "α PP" -> lever = "DEONTIC MOTIVATION" | lever = "TELEOLOGIC MOTIVATION" | lever = "novel";
+  substance = "α FV" -> lever = "novel";
+  substance = "α FP" -> lever = "novel";
+  substance = "α VP" -> lever = "novel";
+  substance = "β ss" -> lever = "ANALOGOUS" | lever = "SIMILAR" | lever = "COMPARABLE" | lever = "EQUAL" | lever = "METAPHORICALLY" | lever = "COMPOSED" | lever = "PART" | lever = "RANKS BELOW" | lever = "RANKS ABOVE" | lever = "OWES RECIPROCITY" | lever = "novel";
+  substance = "β pp" -> lever = "ANALOGOUS" | lever = "SIMILAR" | lever = "COMPARABLE" | lever = "EQUAL" | lever = "METAPHORICALLY" | lever = "COMPOSED" | lever = "PART" | lever = "RANKS BELOW" | lever = "RANKS ABOVE" | lever = "OWES RECIPROCITY" | lever = "novel";
+  substance = "β uu" -> lever = "ANALOGOUS" | lever = "SIMILAR" | lever = "COMPARABLE" | lever = "EQUAL" | lever = "METAPHORICALLY" | lever = "COMPOSED" | lever = "PART" | lever = "RANKS BELOW" | lever = "RANKS ABOVE" | lever = "OWES RECIPROCITY" | lever = "novel";
+  substance = "β ps" -> lever = "EXAMPLE" | lever = "SPECIES" | lever = "novel";
+  substance = "β us" -> lever = "EXAMPLE" | lever = "SPECIES" | lever = "novel";
+  substance = "β up" -> lever = "EXAMPLE" | lever = "SPECIES" | lever = "novel";
+  substance = "β sp" -> lever = "TOTALITY" | lever = "GENUS" | lever = "novel";
+  substance = "β su" -> lever = "TOTALITY" | lever = "GENUS" | lever = "novel";
+  substance = "β pu" -> lever = "TOTALITY" | lever = "GENUS" | lever = "novel";
+  substance = "γ i" -> lever = "SYNONYMOUS" | lever = "OPPOSITE" | lever = "DERIVATIVE" | lever = "INTEGRATIVE" | lever = "CONVERSE" | lever = "novel";
+  substance = "γ d" -> lever = "none" | lever = "novel";
+  substance = "δ I" -> lever = "ETHOTICALLY AUTHORITATIVE" | lever = "novel";
+  substance = "δ II" -> lever = "CHARACTERALLY AUTHORITATIVE" | lever = "NEGATIVE MOTIVATION" | lever = "OFFERED REWARD" | lever = "COMMITS" | lever = "UNDESIRABLE IMPLICATION" | lever = "novel";
+  substance = "δ III" -> lever = "EPISTEMICALLY AUTHORITATIVE" | lever = "MORALLY AUTHORITATIVE" | lever = "TESTIMONIALLY AUTHORITATIVE" | lever = "POPULARLY AUTHORITATIVE" | lever = "PRESUMPTION" | lever = "novel";
+}

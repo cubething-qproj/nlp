@@ -1,0 +1,879 @@
+[
+  {
+    "name": "webanno.custom.Concept",
+    "uiName": "Concept",
+    "type": "span",
+    "description": "What is this about? Unit: phrase to paragraph.",
+    "enabled": true,
+    "built_in": false,
+    "readonly": false,
+    "cross_sentence": true,
+    "show_hover": true,
+    "anchoring_mode": "TOKENS",
+    "overlap_mode": "ANY_OVERLAP",
+    "validation_mode": "ALWAYS",
+    "allow_stacking": true,
+    "lock_to_token_offset": false,
+    "multiple_tokens": true,
+    "linked_list_behavior": false,
+    "features": [
+      {
+        "name": "concept",
+        "uiName": "concept",
+        "type": "kb:<ANY>",
+        "description": "The most specific concept or sense in the knowledge base. Add missing ones on the Knowledge Base page.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 1,
+        "tag_set": null,
+        "traits": "{\"allowedValueType\": \"ANY_OBJECT\"}"
+      },
+      {
+        "name": "use",
+        "uiName": "use",
+        "type": "uima.cas.String",
+        "description": "How much the passage is about the concept.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 2,
+        "tag_set": {
+          "name": "concept use",
+          "description": "Mention vs. discussion.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "defined",
+              "tag_description": "The text says what X is or redefines it."
+            },
+            {
+              "tag_name": "discussed",
+              "tag_description": "Says something about X."
+            },
+            {
+              "tag_name": "mentioned",
+              "tag_description": "X only appears."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "unsure",
+        "uiName": "unsure",
+        "type": "uima.cas.Boolean",
+        "description": "Low confidence: say why in note.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 3,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "note",
+        "uiName": "note",
+        "type": "uima.cas.String",
+        "description": "The doubt, the label you nearly chose, or a reconstructed premise's wording.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 4,
+        "tag_set": null,
+        "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+      },
+      {
+        "name": "continues",
+        "uiName": "continues",
+        "type": "webanno.custom.Concept",
+        "description": "Other parts of an interrupted passage.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "ARRAY",
+        "link_mode": "WITH_ROLE",
+        "curatable": true,
+        "rank": 5,
+        "tag_set": null,
+        "traits": "{\"enableRoleLabels\": false}",
+        "link_type_name": "webanno.custom.ConceptContinuesLink",
+        "link_type_role_feature_name": "role",
+        "link_type_target_feature_name": "target"
+      }
+    ]
+  },
+  {
+    "name": "webanno.custom.Argument",
+    "uiName": "Argument",
+    "type": "span",
+    "description": "What is it doing logically? Unit: clause or sentence.",
+    "enabled": true,
+    "built_in": false,
+    "readonly": false,
+    "cross_sentence": true,
+    "show_hover": true,
+    "anchoring_mode": "TOKENS",
+    "overlap_mode": "ANY_OVERLAP",
+    "validation_mode": "ALWAYS",
+    "allow_stacking": true,
+    "lock_to_token_offset": false,
+    "multiple_tokens": true,
+    "linked_list_behavior": false,
+    "features": [
+      {
+        "name": "label",
+        "uiName": "label",
+        "type": "uima.cas.String",
+        "description": "Argumentative role.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 1,
+        "tag_set": {
+          "name": "argument labels",
+          "description": "Argument layer labels.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "thesis",
+              "tag_description": "The main claim of the text or section; few per text."
+            },
+            {
+              "tag_name": "claim",
+              "tag_description": "Any other asserted proposition. Premise/conclusion are roles given by relations."
+            },
+            {
+              "tag_name": "example",
+              "tag_description": "A case offered as illustration or evidence."
+            },
+            {
+              "tag_name": "other",
+              "tag_description": "Argumentative, but none of the above."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "voice",
+        "uiName": "voice",
+        "type": "uima.cas.String",
+        "description": "Whose view the span is.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 2,
+        "tag_set": {
+          "name": "voice",
+          "description": "Whose view a span voices.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "author",
+              "tag_description": "The author's own view."
+            },
+            {
+              "tag_name": "reported",
+              "tag_description": "A view the author reports or attacks."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "reconstructed",
+        "uiName": "reconstructed",
+        "type": "uima.cas.Boolean",
+        "description": "Inferred rather than read off the page.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 3,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "unsure",
+        "uiName": "unsure",
+        "type": "uima.cas.Boolean",
+        "description": "Low confidence: say why in note.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 4,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "note",
+        "uiName": "note",
+        "type": "uima.cas.String",
+        "description": "The doubt, the label you nearly chose, or a reconstructed premise's wording.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 5,
+        "tag_set": null,
+        "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+      },
+      {
+        "name": "continues",
+        "uiName": "continues",
+        "type": "webanno.custom.Argument",
+        "description": "Other parts of an interrupted passage.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "ARRAY",
+        "link_mode": "WITH_ROLE",
+        "curatable": true,
+        "rank": 6,
+        "tag_set": null,
+        "traits": "{\"enableRoleLabels\": false}",
+        "link_type_name": "webanno.custom.ArgumentContinuesLink",
+        "link_type_role_feature_name": "role",
+        "link_type_target_feature_name": "target"
+      }
+    ]
+  },
+  {
+    "name": "webanno.custom.ArgumentRelation",
+    "uiName": "Argument relation",
+    "type": "relation",
+    "description": "From one argument span to another.",
+    "enabled": true,
+    "built_in": false,
+    "readonly": false,
+    "cross_sentence": true,
+    "show_hover": true,
+    "anchoring_mode": "TOKENS",
+    "overlap_mode": "ANY_OVERLAP",
+    "validation_mode": "ALWAYS",
+    "allow_stacking": true,
+    "lock_to_token_offset": false,
+    "multiple_tokens": true,
+    "linked_list_behavior": false,
+    "attach_type": {
+      "name": "webanno.custom.Argument"
+    },
+    "features": [
+      {
+        "name": "label",
+        "uiName": "label",
+        "type": "uima.cas.String",
+        "description": "IAT relation type.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 1,
+        "tag_set": {
+          "name": "argument relations",
+          "description": "IAT relation types.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "inference",
+              "tag_description": "A is a reason for B."
+            },
+            {
+              "tag_name": "conflict",
+              "tag_description": "A is a reason against B."
+            },
+            {
+              "tag_name": "rephrase",
+              "tag_description": "A says B again in other words."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "strength",
+        "uiName": "strength",
+        "type": "uima.cas.String",
+        "description": "On inference: how strongly A supports B.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 2,
+        "tag_set": {
+          "name": "inference strength",
+          "description": "Inference strength.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "deductive",
+              "tag_description": "B follows from A (with its linked partners) necessarily."
+            },
+            {
+              "tag_name": "defeasible",
+              "tag_description": "A only makes B plausible: induction, analogy, authority."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "kind",
+        "uiName": "kind",
+        "type": "uima.cas.String",
+        "description": "On conflict: what A says is wrong with B.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 3,
+        "tag_set": {
+          "name": "conflict kind",
+          "description": "Conflict kinds.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "rebut",
+              "tag_description": "B is false."
+            },
+            {
+              "tag_name": "undercut",
+              "tag_description": "B doesn't follow from its reasons."
+            },
+            {
+              "tag_name": "dismiss",
+              "tag_description": "B is meaningless or ill-formed: neither true nor false."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "group",
+        "uiName": "group",
+        "type": "uima.cas.String",
+        "description": "On inference: premises that only support B together share a group name (g1, g2, ...).",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 4,
+        "tag_set": null,
+        "traits": null
+      }
+    ]
+  },
+  {
+    "name": "webanno.custom.Move",
+    "uiName": "Move",
+    "type": "span",
+    "description": "What is it doing rhetorically? Unit: sentence to paragraph.",
+    "enabled": true,
+    "built_in": false,
+    "readonly": false,
+    "cross_sentence": true,
+    "show_hover": true,
+    "anchoring_mode": "SENTENCES",
+    "overlap_mode": "ANY_OVERLAP",
+    "validation_mode": "ALWAYS",
+    "allow_stacking": true,
+    "lock_to_token_offset": false,
+    "multiple_tokens": false,
+    "linked_list_behavior": false,
+    "features": [
+      {
+        "name": "label",
+        "uiName": "label",
+        "type": "uima.cas.String",
+        "description": "Rhetorical move.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 1,
+        "tag_set": {
+          "name": "move labels",
+          "description": "Move layer labels.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "question",
+              "tag_description": "A real question that drives the text; not a rhetorical one."
+            },
+            {
+              "tag_name": "distinction",
+              "tag_description": "Splits one notion into two."
+            },
+            {
+              "tag_name": "analysis",
+              "tag_description": "Takes a sentence or concept apart: logical or linguistic."
+            },
+            {
+              "tag_name": "wordplay",
+              "tag_description": "Etymology, puns, playing a word against itself."
+            },
+            {
+              "tag_name": "appeal",
+              "tag_description": "To experience, mood, or intuition rather than reasons."
+            },
+            {
+              "tag_name": "concession",
+              "tag_description": "Grants a point before turning."
+            },
+            {
+              "tag_name": "summary",
+              "tag_description": "Gathers up what came before."
+            },
+            {
+              "tag_name": "other",
+              "tag_description": "A deliberate move, but none of the above."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "unsure",
+        "uiName": "unsure",
+        "type": "uima.cas.Boolean",
+        "description": "Low confidence: say why in note.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 2,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "note",
+        "uiName": "note",
+        "type": "uima.cas.String",
+        "description": "The doubt, the label you nearly chose, or a reconstructed premise's wording.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 3,
+        "tag_set": null,
+        "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+      },
+      {
+        "name": "continues",
+        "uiName": "continues",
+        "type": "webanno.custom.Move",
+        "description": "Other parts of an interrupted passage.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "ARRAY",
+        "link_mode": "WITH_ROLE",
+        "curatable": true,
+        "rank": 4,
+        "tag_set": null,
+        "traits": "{\"enableRoleLabels\": false}",
+        "link_type_name": "webanno.custom.MoveContinuesLink",
+        "link_type_role_feature_name": "role",
+        "link_type_target_feature_name": "target"
+      }
+    ]
+  },
+  {
+    "name": "webanno.custom.Reference",
+    "uiName": "Reference",
+    "type": "span",
+    "description": "What does it point to? Unit: the quoted or referring words.",
+    "enabled": true,
+    "built_in": false,
+    "readonly": false,
+    "cross_sentence": true,
+    "show_hover": true,
+    "anchoring_mode": "TOKENS",
+    "overlap_mode": "ANY_OVERLAP",
+    "validation_mode": "ALWAYS",
+    "allow_stacking": true,
+    "lock_to_token_offset": false,
+    "multiple_tokens": true,
+    "linked_list_behavior": false,
+    "features": [
+      {
+        "name": "label",
+        "uiName": "label",
+        "type": "uima.cas.String",
+        "description": "Kind of reference.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 1,
+        "tag_set": {
+          "name": "reference labels",
+          "description": "Reference layer labels.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "quote",
+              "tag_description": "Words quoted from another text."
+            },
+            {
+              "tag_name": "citation",
+              "tag_description": "Names an author or work."
+            },
+            {
+              "tag_name": "allusion",
+              "tag_description": "Points to another text without naming it."
+            },
+            {
+              "tag_name": "other",
+              "tag_description": "Points elsewhere, but none of the above."
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "target",
+        "uiName": "target",
+        "type": "uima.cas.String",
+        "description": "The work or author pointed to.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 2,
+        "tag_set": {
+          "name": "works",
+          "description": "Work and author ids for reference targets.",
+          "language": null,
+          "create_tag": true,
+          "tags": []
+        },
+        "traits": null
+      },
+      {
+        "name": "stance",
+        "uiName": "stance",
+        "type": "uima.cas.String",
+        "description": "The text's stance toward the target.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 3,
+        "tag_set": {
+          "name": "stance",
+          "description": "Stance toward a reference target.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "agrees",
+              "tag_description": ""
+            },
+            {
+              "tag_name": "disagrees",
+              "tag_description": ""
+            },
+            {
+              "tag_name": "neutral",
+              "tag_description": ""
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "unsure",
+        "uiName": "unsure",
+        "type": "uima.cas.Boolean",
+        "description": "Low confidence: say why in note.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 4,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "note",
+        "uiName": "note",
+        "type": "uima.cas.String",
+        "description": "The doubt, the label you nearly chose, or a reconstructed premise's wording.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": true,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 5,
+        "tag_set": null,
+        "traits": "{\"multipleRows\": true, \"dynamicSize\": true}"
+      },
+      {
+        "name": "continues",
+        "uiName": "continues",
+        "type": "webanno.custom.Reference",
+        "description": "Other parts of an interrupted passage.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "ARRAY",
+        "link_mode": "WITH_ROLE",
+        "curatable": true,
+        "rank": 6,
+        "tag_set": null,
+        "traits": "{\"enableRoleLabels\": false}",
+        "link_type_name": "webanno.custom.ReferenceContinuesLink",
+        "link_type_role_feature_name": "role",
+        "link_type_target_feature_name": "target"
+      }
+    ]
+  },
+  {
+    "name": "webanno.custom.Pass",
+    "uiName": "Pass",
+    "type": "document-metadata",
+    "description": "One entry per document per layer pass.",
+    "enabled": true,
+    "built_in": false,
+    "readonly": false,
+    "cross_sentence": false,
+    "show_hover": true,
+    "anchoring_mode": "TOKENS",
+    "overlap_mode": "ANY_OVERLAP",
+    "validation_mode": "ALWAYS",
+    "allow_stacking": true,
+    "lock_to_token_offset": false,
+    "multiple_tokens": true,
+    "linked_list_behavior": false,
+    "features": [
+      {
+        "name": "layer",
+        "uiName": "layer",
+        "type": "uima.cas.String",
+        "description": "Which layer this pass covered.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 1,
+        "tag_set": {
+          "name": "pass layers",
+          "description": "Layers a pass can cover.",
+          "language": null,
+          "create_tag": false,
+          "tags": [
+            {
+              "tag_name": "concept",
+              "tag_description": ""
+            },
+            {
+              "tag_name": "argument",
+              "tag_description": ""
+            },
+            {
+              "tag_name": "move",
+              "tag_description": ""
+            },
+            {
+              "tag_name": "reference",
+              "tag_description": ""
+            }
+          ]
+        },
+        "traits": "{\"editorType\": \"RADIOGROUP\"}"
+      },
+      {
+        "name": "guideline_version",
+        "uiName": "guideline version",
+        "type": "uima.cas.String",
+        "description": "Guide version used.",
+        "enabled": true,
+        "visible": true,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 2,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "date",
+        "uiName": "date",
+        "type": "uima.cas.String",
+        "description": "YYYY-MM-DD.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 3,
+        "tag_set": null,
+        "traits": null
+      },
+      {
+        "name": "minutes",
+        "uiName": "minutes",
+        "type": "uima.cas.Integer",
+        "description": "Time spent on this pass.",
+        "enabled": true,
+        "visible": false,
+        "include_in_hover": false,
+        "required": false,
+        "remember": false,
+        "hideUnconstraintFeature": false,
+        "multi_value_mode": "NONE",
+        "link_mode": "NONE",
+        "curatable": true,
+        "rank": 4,
+        "tag_set": null,
+        "traits": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+id,text,file,node,lineNumber
+line:1dadbe39,NPC: I believe that X because Y.,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,start,4
+line:8b9db94e,That's dumb.,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,start,5
+line:31ccb0d7,You're dumb.,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,start,7
+line:a7fcb7a0,(free input),/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,start,11
+line:52aaa5d7,NPC: You haven't changed my mind.,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,badArgument,19
+line:7030fc2b,NPC: hm,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,evaluate,27
+line:ca61f5b2,NPC: dang i guess that makes sense,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,evaluate,29
+line:5c51f2c5,NPC: that's not what i'm talking about,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,evaluate,32
+line:cd4c4d55,NPC: okay that's true but your argument is invalid,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,evaluate,36
+line:ef480c36,NPC: this is about science. science doesn't need faith.,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,46
+line:88a6810c,a,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,48
+line:1e96867b,b,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,49
+line:a4c78fe2,(free input),/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,50
+line:32f78895,NPC: this is about science. and i don't see how they relate.,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,53
+line:9162ec0b,a,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,55
+line:0752eb7c,b,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,56
+line:bd03e2e5,(free input),/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,wrongConcept,57
+line:2bb43a50,NPC: ok bye,/home/ada/repos/cubething-qproj/misc/labs/nlp/examples/1.yarn,end,64

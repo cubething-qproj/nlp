@@ -28,6 +28,11 @@ smoke runs. A data set is a directory:
 All offsets are `[start, end)` in Unicode code points over the text file; a
 Rust port must convert from byte offsets.
 
+Downloaded pages come in all sorts of encodings, and Label Studio only reads
+UTF-8. Run `uv run scripts/to_utf8.py data/documents` before importing: it
+detects each file's encoding, rewrites it as UTF-8, and keeps the original as
+`<name>.orig` (`--dry-run` to only report).
+
 **Annotations** are a [W3C Web Annotation](https://www.w3.org/TR/annotation-model/)
 `AnnotationPage`, so they can overlap and stack freely. We read a subset:
 

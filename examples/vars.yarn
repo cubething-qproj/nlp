@@ -1,0 +1,6 @@
+title: vars
+---
+<<declare $key="some-concept">>
+<<declare $argumentIsValid=false>>
+<<declare $foundConcept="some-concept">>
+===

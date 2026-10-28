@@ -1,0 +1,70 @@
+title: Start
+---
+
+NPC: I believe that X because Y.
+-> That's dumb.
+    <<jump badArgument>>
+-> You're dumb.
+    <<jump badArgument>>
+// this interrupts the yarn dialogue to give the player free input.
+// from there, the input is evaluated
+-> (free input)
+    <<jump evaluate>>
+
+===
+
+title: badArgument
+---
+
+NPC: You haven't changed my mind.
+<<jump Start>>
+
+===
+
+title: evaluate
+---
+
+NPC: hm
+<<if $argumentIsValid and $foundConcept==$key>>
+    NPC: dang i guess that makes sense
+        <<jump end>>
+<<elseif $argumentIsValid and $foundConcept != $key>>
+    NPC: that's not what i'm talking about
+    <<jump wrongConcept>>
+<<elseif $foundConcept==$key>>
+    NPC: okay that's true but your argument is invalid
+    <<jump badArgument>>
+<<else>>
+    <<jump badArgument>>
+<<endif>>
+
+===
+title: wrongConcept
+---
+<<if $foundConcept == "faith">>
+    NPC: this is about science. science doesn't need faith.
+    // these jump to wherever
+    -> a
+    -> b
+    -> (free input)
+        <<jump evaluate>>
+<<elseif $foundConcept == "art">>
+    NPC: this is about science. and i don't see how they relate.
+    // these jump to wherever
+    -> a
+    -> b
+    -> (free input)
+        <<jump evaluate>>
+<<else>>
+    NPC: I don't see how that's related.
+    -> You're right, it's not.
+        <<jump badArgument>>
+    -> (free input)
+        <<jump evaluate>>
+<<endif>>
+
+===
+title: end
+---
+NPC: ok bye
+===
