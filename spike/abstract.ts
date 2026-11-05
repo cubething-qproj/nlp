@@ -55,7 +55,7 @@ export function abstract(doc: Doc): Notation {
   const yasInto = (id: string) => into(id).filter((e) => kind(e.from) === 'YA').map((e) => node.get(e.from)!);
 
   const notationLocutions = locutions.map((n): Locution => {
-    const l: Locution = { id: ref(n.id), speaker: speaker(n), quote: n.text };
+    const l: Locution = { id: ref(n.id), speaker: speaker(n), quote: n.text, replyTo: [] };
     if (!n.span) l.implicit = true;
     const reporters = yasInto(n.id);
     if (reporters.length > 1) fail(n, 'is reported more than once');

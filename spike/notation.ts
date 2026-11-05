@@ -15,17 +15,19 @@ import type { Acceptability, Perspective, Scope, StatementKind, TRANSFORMATIONS 
 
 export type Transformation = (typeof TRANSFORMATIONS)[number];
 
-/** Illocutionary forces the gold set uses; the editor offers a few more. */
-export type Force =
-  | 'Asserting'
-  | 'Agreeing'
-  | 'Disagreeing'
-  | 'Restating'
-  | 'Arguing'
-  | 'Rhetorical Questioning'
-  | 'Pure Questioning'
-  | 'Assertive Questioning'
-  | 'Challenging';
+/** Illocutionary forces the gold set uses, plus the editor's other questioning forces. */
+export const FORCES = [
+  'Asserting',
+  'Agreeing',
+  'Disagreeing',
+  'Restating',
+  'Arguing',
+  'Rhetorical Questioning',
+  'Pure Questioning',
+  'Assertive Questioning',
+  'Challenging',
+] as const;
+export type Force = (typeof FORCES)[number];
 
 export interface Notation {
   /** Speakers as IAT prefixes locutions: `Forename Surname`. */
@@ -48,8 +50,11 @@ export interface Locution {
   implicit?: true;
   /** The locution that reports these words, which anchors them by Asserting. */
   reportedBy?: string;
-  /** Locutions this one responds to: the inputs of its incoming TA. Omitted: none. */
-  replyTo?: string[];
+  /**
+   * Locutions this one responds to: the inputs of its incoming TA. Required,
+   * so the model decides it for every locution; empty for none.
+   */
+  replyTo: string[];
 }
 
 /** Where a YA hangs: a locution, or the TA into a locution. */
