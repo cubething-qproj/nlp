@@ -1,11 +1,6 @@
-.venv/
-__pycache__/
-.pytest_cache/
-.hypothesis/
-out/
-results/raw/
+# Lab material is excerpted from real books: never commit it.
+data/
+results/
 
-# Training material is excerpted from real books: never commit it.
-# Only the made-up fixture is tracked.
-data/*
-!data/fixture/
+# Model weights.
+models/
